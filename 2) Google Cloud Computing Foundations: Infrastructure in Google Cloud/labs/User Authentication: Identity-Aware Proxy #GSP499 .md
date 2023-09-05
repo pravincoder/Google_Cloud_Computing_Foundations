@@ -13,7 +13,7 @@ cd ~/user-authentication-with-iap/3-HelloVerifiedUser
 gcloud app deploy
 LINK=$(gcloud app browse)
 LINKU=${LINK#https://}
-cat <<EOT > details.json
+cat > details.json << EOF
 {
   App name: IAP Example
   Application home page: $LINK
@@ -21,7 +21,7 @@ cat <<EOT > details.json
   Authorized domains: $LINKU
   Developer Contact Information: Cloudhustler@gmail.com
 }
-EOT
+EOF
 cat details.json
 ```
 ### Press 10 and y when asked (3 times it will ask for y)
