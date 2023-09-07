@@ -1,9 +1,13 @@
+# GSP215
+## Run in cloudshell
+### Get REGION 1 AND REGION 2 from Task 2
 ```cmd
 export REGION1=
 ```
 ```cmd
 export REGION2=
 ```
+### Get VM ZONE from TASK 4 Step 3
 ```cmd
 export VM_ZONE=
 ```
