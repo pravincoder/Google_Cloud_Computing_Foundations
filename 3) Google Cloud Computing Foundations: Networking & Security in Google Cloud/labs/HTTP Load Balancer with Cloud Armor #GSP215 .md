@@ -206,4 +206,60 @@ gcloud compute instances create siege-vm \
 --shielded-integrity-monitoring \
 --labels=goog-ec-src=vm_add-gcloud \
 --reservation-affinity=any
+export SIEGE_VM_IP=$(gcloud compute instances describe siege-vm --project=$DEVSHELL_PROJECT_ID --zone=$VM_ZONE --format="value(networkInterfaces[0].accessConfigs[0].natIP)")
+cat > 4.json <<EOF
+{
+    "adaptiveProtectionConfig": {
+      "layer7DdosDefenseConfig": {
+        "enable": false
+      }
+    },
+    "description": "",
+    "name": "denylist-siege",
+    "rules": [
+      {
+        "action": "deny(403)",
+        "description": "",
+        "match": {
+          "config": {
+            "srcIpRanges": [
+               "$SIEGE_VM_IP"
+            ]
+          },
+          "versionedExpr": "SRC_IPS_V1"
+        },
+        "preview": false,
+        "priority": 1000
+      },
+      {
+        "action": "allow",
+        "description": "Default rule, higher priority overrides it",
+        "match": {
+          "config": {
+            "srcIpRanges": [
+              "*"
+            ]
+          },
+          "versionedExpr": "SRC_IPS_V1"
+        },
+        "preview": false,
+        "priority": 2147483647
+      }
+    ],
+    "type": "CLOUD_ARMOR"
+  }
+EOF
+curl -X POST -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" \
+-d @4.json \
+"https://compute.googleapis.com/compute/v1/projects/$DEVSHELL_PROJECT_ID/global/securityPolicies"
+cat > 5.json <<EOF
+{
+    "securityPolicy": "projects/$DEVSHELL_PROJECT_ID/global/securityPolicies/denylist-siege"
+}
+EOF
+curl -X PATCH -H "Authorization: Bearer $(gcloud auth print-access-token)" -H "Content-Type: application/json" \
+-d @5.json \
+"https://compute.googleapis.com/compute/v1/projects/$DEVSHELL_PROJECT_ID/global/backendServices/http-backend"
+export RULE_IP=$(gcloud compute forwarding-rules describe http-lb-forwarding-rule --global --format="value(IPAddress)")
+gcloud compute ssh --zone "$VM_ZONE" "siege-vm" --project "$DEVSHELL_PROJECT_ID" --quiet --command "sudo apt-get -y install siege"
 ```
