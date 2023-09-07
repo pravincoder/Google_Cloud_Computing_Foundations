@@ -16,6 +16,9 @@ gcloud compute firewall-rules create allow-http \
 --rules=tcp:80 \
 --source-ranges=0.0.0.0/0 \
 --target-tags=http-server
+gcloud compute instances create gcelab2 \
+--machine-type e2-medium \
+--zone=$ZONE
 gcloud compute ssh gcelab --zone=$ZONE
 ```
 ```cmd
@@ -23,7 +26,4 @@ sudo apt-get update
 sudo apt-get install -y nginx
 ps auwx | grep nginx
 exit
-```
-```cmd
-gcloud compute instances create gcelab2 --machine-type e2-medium --zone=$ZONE
 ```
