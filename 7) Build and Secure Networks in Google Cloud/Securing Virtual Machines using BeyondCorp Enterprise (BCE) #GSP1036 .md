@@ -1,5 +1,6 @@
 # GSP1036
 ## Run in cloudshell
+## ⚠️ ERROR
 ```cmd
 export USERNAME=
 ```
