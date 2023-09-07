@@ -2,6 +2,7 @@
 ## Run in Cloudshell
 ```cmd
 gsutil mb gs://$DEVSHELL_PROJECT_ID-bucket/
+gcloud services disable dataflow.googleapis.com
 gcloud services enable dataflow.googleapis.com
 docker run -it -e DEVSHELL_PROJECT_ID=$DEVSHELL_PROJECT_ID python:3.9 /bin/bash -c '
 pip install "apache-beam[gcp]"==2.42.0 && \
