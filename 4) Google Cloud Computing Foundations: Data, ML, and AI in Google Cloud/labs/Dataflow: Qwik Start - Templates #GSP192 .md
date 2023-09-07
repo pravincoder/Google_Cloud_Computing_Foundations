@@ -1,6 +1,9 @@
 # GSP192
 ## Run in cloudshell
 ```cmd
+export REGION=
+```
+```cmd
 bq mk taxirides
 bq mk \
 --time_partitioning_field timestamp \
@@ -12,7 +15,7 @@ gcloud services disable dataflow.googleapis.com
 gcloud services enable dataflow.googleapis.com
 gcloud dataflow jobs run iotflow \
 --gcs-location gs://dataflow-templates/latest/PubSub_to_BigQuery \
---region us-west1 \
+--region $REGION \
 --staging-location gs://$DEVSHELL_PROJECT_ID/temp \
 --parameters inputTopic=projects/pubsub-public-data/topics/taxirides-realtime,outputTableSpec=$DEVSHELL_PROJECT_ID:taxirides.realtime
 ```
