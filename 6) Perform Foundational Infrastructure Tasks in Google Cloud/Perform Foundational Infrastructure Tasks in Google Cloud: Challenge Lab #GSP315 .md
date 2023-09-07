@@ -1,6 +1,9 @@
 # GSP315
 ## Run in cloudshell
 ```cmd
+export USERNAME2=
+```
+```cmd
 export BUCKET_NAME=
 ```
 ```cmd
@@ -108,6 +111,7 @@ gcloud functions deploy $FUNCTION_NAME \
 --entry-point thumbnail
 curl -o map.jpg https://storage.googleapis.com/cloud-training/gsp315/map.jpg
 gsutil cp map.jpg gs://$BUCKET_NAME/map.jpg
+gcloud projects remove-iam-policy-binding $DEVSHELL_PROJECT_ID \
+--member=user:$USERNAME2 \
+--role=roles/viewer
 ```
-## Copy username 2
-## Go to IAM > In search box paste your username 2 > Select that username > click REMOVE ACCESS
