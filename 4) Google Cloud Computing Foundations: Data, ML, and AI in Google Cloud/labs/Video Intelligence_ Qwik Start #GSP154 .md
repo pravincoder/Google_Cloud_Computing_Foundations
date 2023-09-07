@@ -16,6 +16,6 @@ cat > request.json <<EOF
 EOF
 export RESPONSE=$(curl -s -H 'Content-Type: application/json' -H 'Authorization: Bearer '$(gcloud auth print-access-token)'' 'https://videointelligence.googleapis.com/v1/videos:annotate' -d @request.json | jq -r '.name')
 curl -s -H 'Content-Type: application/json' \
-    -H 'Authorization: Bearer '$(gcloud auth print-access-token)'' \
-    'https://videointelligence.googleapis.com/v1/$RESPONSE'
+-H 'Authorization: Bearer '$(gcloud auth print-access-token)'' \
+"https://videointelligence.googleapis.com/v1/$RESPONSE"
 ```
