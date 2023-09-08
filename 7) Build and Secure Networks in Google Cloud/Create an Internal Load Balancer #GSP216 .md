@@ -1,12 +1,11 @@
 # GSP751
->🚨 [PLEASE SUBSCRIBE OUR CHANNEL CLOUDHUSTLER](https://www.youtube.com/@cloudhustlers) **&** [JOIN OUR COMMUNITY](https://chat.whatsapp.com/KBfUcSleGGEFf2Xvvm8FW3)
-### Run in cloudshell 
-> Zone from task 2 >```Create the managed instance groups```> step 3
+## Run in cloudshell 
+### Zone from task 2 >`Create the managed instance groups`> step 3
 ```cmd
-ZONE=
+export ZONE=
 ```
 ```cmd
-export REGION=${ZONE%-*}
+export REGION=${ZONE::-2}
 last_char="${ZONE: -1}"
 if [ "$last_char" == "a" ]; then
     export NZONE="${ZONE%?}b"  
