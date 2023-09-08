@@ -15,7 +15,8 @@ bq mk \
 timestamp:timestamp,meter_reading:float,meter_increment:float,ride_status:string,\
 passenger_count:integer -t taxirides.realtime
 gsutil mb gs://$DEVSHELL_PROJECT_ID/
-sleep 15
+```
+```cmd
 gcloud dataflow jobs run iotflow \
 --gcs-location gs://dataflow-templates/latest/PubSub_to_BigQuery \
 --region $REGION \
