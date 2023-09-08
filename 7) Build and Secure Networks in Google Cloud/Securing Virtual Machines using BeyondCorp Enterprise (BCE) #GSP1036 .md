@@ -1,6 +1,6 @@
 # GSP1036
 ## Run in cloudshell
-## ⚠️ ERROR
+## ⚠️ We are making solution
 ```cmd
 export USERNAME=
 ```
