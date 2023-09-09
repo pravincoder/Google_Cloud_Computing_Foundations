@@ -1,13 +1,13 @@
 # GSP322
 ## Run in Cloudshell
 ```cmd
-SSH_IAP_Network_tag=accept-ssh-iap-ingress-ql-166
+SSH_IAP_Network_tag=
 ```
 ```cmd
-SSH_Internal_Network_tag=accept-ssh-internal-ingress-ql-250
+SSH_Internal_Network_tag=
 ```
 ```cmd
-HTTP_Network_Tag=accept-http-ingress-ql-274
+HTTP_Network_Tag=
 ```
 ### Search ```Vm instance``` > Copy the Zone 
 ```cmd
