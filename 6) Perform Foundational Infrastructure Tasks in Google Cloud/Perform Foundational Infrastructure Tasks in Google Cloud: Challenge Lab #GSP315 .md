@@ -16,8 +16,8 @@ export FUNCTION_NAME=
 ```cmd
 gsutil mb gs://$BUCKET_NAME
 gcloud pubsub topics create $TOPIC_NAME
-mkdir CodingWithHardik
-cd CodingWithHardik
+mkdir cloudhustlers
+cd cloudhustlers
 cat > index.js << EOF
 /* globals exports, require */
 //jshint strict: false
