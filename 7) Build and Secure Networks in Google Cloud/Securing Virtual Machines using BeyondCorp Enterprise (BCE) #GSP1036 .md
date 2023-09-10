@@ -1,9 +1,5 @@
 # GSP1036
 ## Run in cloudshell
-## ⚠️ We are making solution
-```cmd
-export USERNAME=
-```
 ```cmd
 gcloud services enable iap.googleapis.com
 gcloud compute instances create linux-iap \
@@ -22,21 +18,33 @@ gcloud compute instances create windows-connectivity \
 --zone us-east1-c \
 --create-disk auto-delete=yes,boot=yes,device-name=windows-connectivity,image=projects/qwiklabs-resources/global/images/iap-desktop-v001,mode=rw,size=50,type=projects/$DEVSHELL_PROJECT_ID/zones/us-east1-c/diskTypes/pd-balanced \
 --scopes https://www.googleapis.com/auth/cloud-platform
-gcloud compute firewall-rules create allow-ingress-from-iap \
---action ALLOW \
---network default \
---direction INGRESS \
---rules tcp:22,tcp:3389 \
---source-ranges 35.235.240.0/20
-export WC_SERVICEACC=$(gcloud compute instances describe windows-connectivity \
---zone us-east1-c \
---format="json" | jq -r .serviceAccounts[0].email)
-gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
---member='serviceAccount:'$WC_SERVICEACC \
---role="roles/iap.tunnelResourceAccessor"
-gcloud iam service-accounts add-iam-policy-binding $WC_SERVICEACC \
---member 'user:'$USERNAME \
---role 'roles/iap.tunnelResourceAcessor'
-gcloud compute resource0policies create-iap-policy linux-iap \
---action allow \
---member 'user:'$USERNAME
+```
+### Search Firewall > Create Firewall Rule 
+> Name ```allow-ingress-from-iap```
+
+>Target ```All instances in the network```
+
+>Source IPv4 Ranges ```35.235.240.0/20```
+
+>Select TCP and enter ```22, 3389```
+
+## Search Identity-Aware Proxy > SSH and TCP Resources
+>Check ```linux-iap```**&**```windows-iap```
+
+>Click ```Add principal```
+
+>Principle: Enter ```service``` and select the first one 
+
+>Role ```IAP-Secured Tunnel User```
+
+>Click SAVE
+
+>Click ```Add principal```
+
+>Principle:  ```Paste your Username```
+
+>Role ```IAP-Secured Tunnel User```
+
+>Click SAVE
+
+### You will get check for last task also (No need to perform it)
