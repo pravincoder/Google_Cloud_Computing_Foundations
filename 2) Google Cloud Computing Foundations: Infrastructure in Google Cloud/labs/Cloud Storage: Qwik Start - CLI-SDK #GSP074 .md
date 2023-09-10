@@ -1,4 +1,5 @@
 # GSP074
+>🚨 [PLEASE SUBSCRIBE OUR CHANNEL CLOUDHUSTLER](https://www.youtube.com/@cloudhustlers) **&** [JOIN OUR COMMUNITY](https://chat.whatsapp.com/KBfUcSleGGEFf2Xvvm8FW3)
 ## Run in Cloudshell
 ```cmd
 gsutil mb gs://$DEVSHELL_PROJECT_ID
