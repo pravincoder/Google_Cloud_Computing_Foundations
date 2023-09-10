@@ -1,4 +1,5 @@
 # GSP064
+>🚨 [PLEASE SUBSCRIBE OUR CHANNEL CLOUDHUSTLER](https://www.youtube.com/@cloudhustlers) **&** [JOIN OUR COMMUNITY](https://chat.whatsapp.com/KBfUcSleGGEFf2Xvvm8FW3)
 ## Login with username 1
 ## Run in cloudshell
 ```cmd
