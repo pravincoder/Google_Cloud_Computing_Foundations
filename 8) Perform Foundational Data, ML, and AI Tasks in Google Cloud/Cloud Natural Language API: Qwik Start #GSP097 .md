@@ -1,4 +1,5 @@
-# GSP097
+# GSP097 
+>🚨 [PLEASE SUBSCRIBE OUR CHANNEL CLOUDHUSTLER](https://www.youtube.com/@cloudhustlers) **&** [JOIN OUR COMMUNITY](https://chat.whatsapp.com/KBfUcSleGGEFf2Xvvm8FW3)
 ## Run in cloudshell
 ```cmd
 export GOOGLE_CLOUD_PROJECT=$(gcloud config get-value core/project)
