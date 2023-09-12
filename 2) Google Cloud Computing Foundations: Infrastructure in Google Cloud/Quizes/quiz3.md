@@ -12,3 +12,4 @@ ____
 ## With which encryption option does a customer encrypt data before sending it to Google Cloud?
 ```Client-side encryption```
 ____
+[![](https://github.com/CodingWithHardik/CodingWithHardik/blob/main/img/subscribe_button.png)](https://www.youtube.com/@CloudHustlers)
