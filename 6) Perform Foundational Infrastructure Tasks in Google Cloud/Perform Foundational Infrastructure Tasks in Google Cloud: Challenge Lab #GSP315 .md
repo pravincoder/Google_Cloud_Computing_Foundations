@@ -5,7 +5,7 @@
 export USERNAME2=
 ```
 ```cmd
-export BUCKET_NAME=
+export ZONE=
 ```
 ```cmd
 export TOPIC_NAME=
@@ -14,7 +14,8 @@ export TOPIC_NAME=
 export FUNCTION_NAME=
 ```
 ```cmd
-gsutil mb gs://$BUCKET_NAME
+export REGION=${ZONE::-2}
+gsutil mb -l $REGION gs://$DEVSHELL_PROJECT_ID-bucket
 gcloud pubsub topics create $TOPIC_NAME
 mkdir cloudhustlers
 cd cloudhustlers
@@ -107,11 +108,12 @@ cat > package.json << EOF
 EOF
 gcloud functions deploy $FUNCTION_NAME \
 --runtime nodejs14 \
---trigger-resource $BUCKET_NAME \
+--trigger-resource $DEVSHELL_PROJECT_ID-bucket \
 --trigger-event google.storage.object.finalize \
---entry-point thumbnail
+--entry-point thumbnail \
+--region=$REGION
 curl -o map.jpg https://storage.googleapis.com/cloud-training/gsp315/map.jpg
-gsutil cp map.jpg gs://$BUCKET_NAME/map.jpg
+gsutil cp map.jpg gs://$DEVSHELL_PROJECT_ID-bucket/map.jpg
 gcloud projects remove-iam-policy-binding $DEVSHELL_PROJECT_ID \
 --member=user:$USERNAME2 \
 --role=roles/viewer
