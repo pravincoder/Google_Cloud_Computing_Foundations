@@ -5,6 +5,7 @@
 export ZONE=
 ```
 ### Get REGION from task 1 point 3 (Create the privatenet network)
+[Screenshot](https://github.com/siddharth7000/practice/blob/main/Screenshot%202023-09-16%20185641.png "Get REGION from task 1 point 3 (Create the privatenet network)")
 ```cmd
 export REGION2=
 ```
